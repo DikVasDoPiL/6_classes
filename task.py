@@ -177,11 +177,11 @@ student_2.rate_lec(lecturer_2, 'Html', 3)
 student_2.rate_lec(lecturer_2, 'Html', 3)
 student_1.rate_lec(lecturer_2, 'JavaScript', 5)
 
-# Вывод некоторых методов
-# print()
-# print(lecturer_1, '\n')
-# print(reviewer_1, '\n')
-# print(student_1, '\n')
+#Вывод некоторых методов
+print()
+print(lecturer_1, '\n')
+print(reviewer_1, '\n')
+print(student_1, '\n')
 
 print(rate_students([student_1, student_2], 'Python'), '\n')
 
