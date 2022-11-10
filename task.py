@@ -49,6 +49,23 @@ class Student:
             f'Курсы в процессе изучения: {courses_in_progress}\n' +
             f'Завершенные курсы: {finished_courses}')
 
+    def _rang_(self):
+        all_grades = []
+        for val in self.grades.values():
+            all_grades += val
+        return round(sum(all_grades) / len(all_grades), 1)
+
+    def __cmp__(self, other):
+        if isinstance(other, Student):
+            if self._rang_() > other._rang_():
+                return f'{self.name} {self.surname} успешнее, чем {other.name} {other.surname}'
+            elif self._rang_() < other._rang_():
+                return f'{self.name} {self.surname} слабее, чем {other.name} {other.surname}'
+            else:
+                return f'Успехи {self.name} {self.surname} сопоставимы с успехами {other.name} {other.surname}'
+        else:
+            return f'Нельзя сравнить {self.name} {self.surname} и {other.name} {other.surname}'
+
 
 class Mentor:
 
@@ -88,6 +105,23 @@ class Lecturer(Mentor):
             f'Имя: {self.name}\n' +
             f'Фамилия: {self.surname}\n' +
             f'Средняя оценка за лекции: {raiting_lec}')
+    
+    def _rang_(self):
+        all_grades = []
+        for val in self.grades.values():
+            all_grades += val
+        return round(sum(all_grades) / len(all_grades), 1)
+
+    def __cmp__(self, other):
+        if isinstance(other, Lecturer):
+            if self._rang_() > other._rang_():
+                return f'{self.name} {self.surname} успешнее, чем {other.name} {other.surname}'
+            elif self._rang_() < other._rang_():
+                return f'{self.name} {self.surname} слабее, чем {other.name} {other.surname}'
+            else:
+                return f'Успехи {self.name} {self.surname} сопоставимы с успехами {other.name} {other.surname}'
+        else:
+            return f'Нельзя сравнить {self.name} {self.surname} и {other.name} {other.surname}'
 
 
 class Reviewer(Mentor):
@@ -177,7 +211,7 @@ student_2.rate_lec(lecturer_2, 'Html', 3)
 student_2.rate_lec(lecturer_2, 'Html', 3)
 student_1.rate_lec(lecturer_2, 'JavaScript', 5)
 
-#Вывод некоторых методов
+# Вывод некоторых методов
 print()
 print(lecturer_1, '\n')
 print(reviewer_1, '\n')
@@ -192,3 +226,16 @@ print(rate_lecturers(lecturer_2, 'Html'), '\n')
 print(rate_lecturers([lecturer_1, 'lecturer_2'], 'Python'), '\n')
 print(rate_lecturers(lecturer_2, 'Java'), '\n')
 print(rate_lecturers('lecturer_2', 'Java'), '\n')
+
+
+
+print(student_1.__cmp__(student_2))
+print(student_1.__cmp__(student_1))
+print(student_2.__cmp__(student_1))
+
+
+print(lecturer_1.__cmp__(lecturer_2))
+print(lecturer_1.__cmp__(lecturer_1))
+print(lecturer_2.__cmp__(lecturer_1))
+
+print(lecturer_1.__cmp__(student_2))
